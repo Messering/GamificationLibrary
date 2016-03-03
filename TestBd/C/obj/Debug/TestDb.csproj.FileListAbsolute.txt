@@ -1,0 +1,8 @@
+F:\Gamification\C\C\bin\Debug\C.exe.config
+F:\Gamification\C\C\bin\Debug\C.exe
+F:\Gamification\C\C\bin\Debug\C.pdb
+F:\Gamification\C\C\bin\Debug\Gamificationlibrary.dll
+F:\Gamification\C\C\bin\Debug\Gamificationlibrary.pdb
+F:\Gamification\C\C\obj\Debug\TestDb.csprojResolveAssemblyReference.cache
+F:\Gamification\C\C\obj\Debug\C.exe
+F:\Gamification\C\C\obj\Debug\C.pdb
