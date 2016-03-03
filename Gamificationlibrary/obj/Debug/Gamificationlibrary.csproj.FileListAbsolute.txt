@@ -1,0 +1,5 @@
+F:\Gamification\Gamificationlibrary\Gamificationlibrary\bin\Debug\Gamificationlibrary.dll
+F:\Gamification\Gamificationlibrary\Gamificationlibrary\bin\Debug\Gamificationlibrary.pdb
+F:\Gamification\Gamificationlibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.dll
+F:\Gamification\Gamificationlibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.pdb
+F:\Gamification\Gamificationlibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.csprojResolveAssemblyReference.cache
