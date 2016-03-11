@@ -9,3 +9,15 @@ F:\Gamification\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.exe
 F:\Gamification\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.pdb
 F:\Gamification\WindowsFormTest\WindowsFormTest\bin\Debug\Gamificationlibrary.dll
 F:\Gamification\WindowsFormTest\WindowsFormTest\bin\Debug\Gamificationlibrary.pdb
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\bin\Debug\WindowsFormTest.exe.config
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.exe
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.pdb
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\bin\Debug\WindowsFormTest.exe
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\bin\Debug\WindowsFormTest.pdb
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\bin\Debug\Gamificationlibrary.dll
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\bin\Debug\Gamificationlibrary.pdb
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.csprojResolveAssemblyReference.cache
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.Form1.resources
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.Properties.Resources.resources
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.csproj.GenerateResource.Cache
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.Profile.resources

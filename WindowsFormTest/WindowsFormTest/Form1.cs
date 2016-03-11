@@ -35,12 +35,44 @@ namespace WindowsFormTest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Account.Login(new SqlConnection(connect.ConnectionString), textBox1.Text, textBox2.Text);
+
+            if (Account.Login(new SqlConnection(connect.ConnectionString), textBox1.Text, textBox2.Text))
+            {
+                Account.Login(new SqlConnection(connect.ConnectionString), textBox1.Text, textBox2.Text);
+                this.Hide();
+                Profile profile = new Profile();
+                profile.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Login or password");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-           Account.Registration(new SqlConnection(connect.ConnectionString),textBox4.Text, textBox3.Text, textBox6.Text, textBox7.Text, textBox5.Text);            
+            if (textBox6.Text == textBox7.Text)
+            {
+                GamificationConnectGamification.OpenConnection(connect.ConnectionString);
+                if (Account.Registration(new SqlConnection(connect.ConnectionString), textBox4.Text, textBox3.Text, textBox6.Text, textBox7.Text, textBox5.Text))
+                {
+                    Account.Registration(new SqlConnection(connect.ConnectionString), textBox4.Text, textBox3.Text, textBox6.Text, textBox7.Text, textBox5.Text);
+                    this.Hide();
+                    Profile profile= new Profile();
+                    profile.ShowDialog();
+                }
+                else
+                {
+                    textBox3.ForeColor = Color.Red;
+                    MessageBox.Show("This nickname reserved");
+                }
+                GamificationConnectGamification.CloseConnection();
+            }
+            else
+            {
+                textBox6.ForeColor = Color.Red;
+                textBox7.ForeColor = Color.Red;
+            }
         }
     }
 }
