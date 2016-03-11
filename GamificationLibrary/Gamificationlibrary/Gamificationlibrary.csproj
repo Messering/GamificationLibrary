@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
     <Compile Include="DataBase\Activity.cs" />
     <Compile Include="DataBase\Badges.cs" />
     <Compile Include="DataBase\GamificationConnectGamification.cs" />

@@ -5,19 +5,25 @@ namespace Gamificationlibrary.DataBase
 {
     public class Helpers : GamificationConnectGamification
     {
-        public static void Insert(int id_helper, string title, string message="Help")
+        public static void Insert(string title, string message="Help")
         {
             string sql = string.Format("Insert Into Helpers" +
-                   "(id_helper, title, message) Values(@id_helper, @title, @message)");
+                   "(title, message) Values(@title, @message)");
 
             using (SqlCommand cmd = new SqlCommand(sql, connect))
             {
-
-                cmd.Parameters.AddWithValue("@id_helper", id_helper);
                 cmd.Parameters.AddWithValue("@title", title);
                 cmd.Parameters.AddWithValue("@message", message);
 
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    Exception error = new Exception("Error adding informative message!", ex);
+                    throw error;
+                }
             }
         }
 
@@ -32,7 +38,7 @@ namespace Gamificationlibrary.DataBase
                 }
                 catch (SqlException ex)
                 {
-                    Exception error = new Exception("Unfortunately, this machine ordered!", ex);
+                    Exception error = new Exception("Error can not be removed from the list of help-messages!", ex);
                     throw error;
                 }
             }
@@ -44,7 +50,15 @@ namespace Gamificationlibrary.DataBase
                    change_colum, change_value, id);
             using (SqlCommand cmd = new SqlCommand(sql, connect))
             {
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    Exception error = new Exception("Updating error not occurred!", ex);
+                    throw error;
+                }
             }
         }
     }

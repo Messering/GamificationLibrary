@@ -5,20 +5,27 @@ namespace Gamificationlibrary.DataBase
 {
    public class Ranks: GamificationConnectGamification
     {
-        public static void Insert(int id_rank, string title, string Images, int points, string note="")
+        public static void Insert(string title, string Images, int points, string note="")
         {
             string sql = string.Format("Insert Into Ranks" +
-                   "(id_rank, title, Images, points, note) Values(@id_rank, @title, @Images, @points, @note)");
+                   "(title, Images, points, note) Values(@title, @Images, @points, @note)");
 
             using (SqlCommand cmd = new SqlCommand(sql, connect))
             {
-                cmd.Parameters.AddWithValue("@id_rank", id_rank);
                 cmd.Parameters.AddWithValue("@title", title);
                 cmd.Parameters.AddWithValue("@Images", Images);
                 cmd.Parameters.AddWithValue("@points", points);
                 cmd.Parameters.AddWithValue("@note", note);
 
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    Exception error = new Exception("Error adding rank!", ex);
+                    throw error;
+                }
             }
         }
 
@@ -33,7 +40,7 @@ namespace Gamificationlibrary.DataBase
                 }
                 catch (SqlException ex)
                 {
-                    Exception error = new Exception("Unfortunately, this machine ordered!", ex);
+                    Exception error = new Exception("Error can not be removed from the list of ranks!", ex);
                     throw error;
                 }
             }
@@ -45,7 +52,15 @@ namespace Gamificationlibrary.DataBase
                    change_colum, change_value, id);
             using (SqlCommand cmd = new SqlCommand(sql, connect))
             {
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    Exception error = new Exception("Updating error not occurred!", ex);
+                    throw error;
+                }
             }
         }
 
@@ -55,7 +70,15 @@ namespace Gamificationlibrary.DataBase
                    change_colum, change_value, id);
             using (SqlCommand cmd = new SqlCommand(sql, connect))
             {
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    Exception error = new Exception("Updating error not occurred!", ex);
+                    throw error;
+                }
             }
         }
     }

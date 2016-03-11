@@ -5,20 +5,27 @@ namespace Gamificationlibrary.DataBase
 {
     public class Profile: GamificationConnectGamification
     {
-        public static void Insert(int id, int id_user, int points, int level, int rank)
+        public static void Insert(int id_user, int points, int level, int rank)
         {
             string sql = string.Format("Insert Into Profiles" +
-                   "(id, id_user, points, level, rank) Values(@id, @id_user, @points, @level, @rank)");
+                   "(id_user, points, level, rank) Values(@id_user, @points, @level, @rank)");
 
             using (SqlCommand cmd = new SqlCommand(sql, connect))
             {
-                cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@id_user", id_user);
                 cmd.Parameters.AddWithValue("@points", points);
                 cmd.Parameters.AddWithValue("@level", level);
                 cmd.Parameters.AddWithValue("@rank", rank);
 
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    Exception error = new Exception("Error creating user!", ex);
+                    throw error;
+                }
             }
         }
 
@@ -33,7 +40,7 @@ namespace Gamificationlibrary.DataBase
                 }
                 catch (SqlException ex)
                 {
-                    Exception error = new Exception("Unfortunately, this machine ordered!", ex);
+                    Exception error = new Exception("Error can not be removed user!", ex);
                     throw error;
                 }
             }
@@ -45,7 +52,15 @@ namespace Gamificationlibrary.DataBase
                    change_colum, change_value, id);
             using (SqlCommand cmd = new SqlCommand(sql, connect))
             {
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    Exception error = new Exception("Error updating profile!", ex);
+                    throw error;
+                }
             }
         }
     }
