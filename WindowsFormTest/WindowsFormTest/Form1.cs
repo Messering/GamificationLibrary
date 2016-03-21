@@ -38,7 +38,6 @@ namespace WindowsFormTest
 
             if (Account.Login(new SqlConnection(connect.ConnectionString), textBox1.Text, textBox2.Text))
             {
-                Account.Login(new SqlConnection(connect.ConnectionString), textBox1.Text, textBox2.Text);
                 this.Hide();
                 Profile profile = new Profile();
                 profile.ShowDialog();
@@ -56,7 +55,6 @@ namespace WindowsFormTest
                 GamificationConnectGamification.OpenConnection(connect.ConnectionString);
                 if (Account.Registration(new SqlConnection(connect.ConnectionString), textBox4.Text, textBox3.Text, textBox6.Text, textBox7.Text, textBox5.Text))
                 {
-                    Account.Registration(new SqlConnection(connect.ConnectionString), textBox4.Text, textBox3.Text, textBox6.Text, textBox7.Text, textBox5.Text);
                     this.Hide();
                     Profile profile= new Profile();
                     profile.ShowDialog();
