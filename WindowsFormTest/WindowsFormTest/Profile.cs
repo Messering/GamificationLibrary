@@ -9,14 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Gamificationlibrary.DataBase;
-using Gamificationlibrary;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace WindowsFormTest
 {
     public partial class Profile : Form
     {
         SqlConnectionStringBuilder connect;
+        UserProfile user;
         public Profile()
         {
             InitializeComponent();
@@ -27,9 +28,23 @@ namespace WindowsFormTest
             connect.DataSource = @"(local)\SQLEXPRESS";
             connect.ConnectTimeout = 30;
             connect.IntegratedSecurity = true;
-            UserProfile user = new UserProfile(Account.id_user, new SqlConnection(connect.ConnectionString));
+            user = new UserProfile(Account.id_user, new SqlConnection(connect.ConnectionString));
             user.loadInformation();
-            label1.Text =""+ user.infUser.ToString();
+            load(user);
+        }
+
+        private void load(UserProfile user) {
+
+            label1.Text = "" + user.nickname;
+            textBox1.Text = "" + user.name;
+            textBox2.Text = "" + user.email;
+            label2.Text = "" + user.titleLevel;
+            label3.Text = "" + user.titleRank;
+            string pathAvatar = Application.StartupPath + "\\icon-user-default.png";
+            if (user.imageUser == "")
+            {
+                pictureBox1.Image = Image.FromFile(Path.GetFullPath(pathAvatar));
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,6 +53,38 @@ namespace WindowsFormTest
             Close();
             Form1 main = new Form1();
             main.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            load(user);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            GamificationConnectGamification.OpenConnection(connect.ConnectionString);
+            if (textBox1.Text != user.name)
+            {
+                Users.Update(Account.id_user, "name", textBox1.Text);
+            }
+
+
+            if (textBox2.Text != user.email)
+            {
+                Users.Update(Account.id_user, "email", textBox2.Text);
+            }
+            if (textBox3.Text != "")
+            {
+                if (textBox3.Text == user.passwords)
+                {
+                    Users.UpdatePassword(Account.id_user, textBox4.Text);
+                }
+                else
+                {
+                    textBox3.BackColor = Color.Red;
+                }
+            }
+            GamificationConnectGamification.CloseConnection();
         }
     }
 }
