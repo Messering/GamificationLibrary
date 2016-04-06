@@ -10,25 +10,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Gamificationlibrary.DataBase;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using System.IO;
 
 namespace WindowsFormTest
 {
     public partial class Profile : Form
     {
-        SqlConnectionStringBuilder connect;
+        MySqlConnection connect;
         UserProfile user;
         public Profile()
         {
             InitializeComponent();
             label1.Text = Account.nickname_user;
-            connect = new SqlConnectionStringBuilder();
-
-            connect.InitialCatalog = "Gamefication";
-            connect.DataSource = @"(local)\SQLEXPRESS";
-            connect.ConnectTimeout = 30;
-            connect.IntegratedSecurity = true;
-            user = new UserProfile(Account.id_user, new SqlConnection(connect.ConnectionString));
+            string сon = "server=localhost;user id=root;database=gamigicationdb";
+            connect = new MySqlConnection(сon);
+            user = new UserProfile(Account.id_user, new MySqlConnection(connect.ConnectionString));
             user.loadInformation();
             load(user);
         }

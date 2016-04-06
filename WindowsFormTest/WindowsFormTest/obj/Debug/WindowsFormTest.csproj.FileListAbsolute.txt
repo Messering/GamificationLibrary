@@ -21,3 +21,5 @@ F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\o
 F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.Properties.Resources.resources
 F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.csproj.GenerateResource.Cache
 F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\obj\Debug\WindowsFormTest.Profile.resources
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\bin\Debug\MySql.Data.dll
+F:\Gamification\New folder\GamificationLibrary\WindowsFormTest\WindowsFormTest\bin\Debug\MySql.Data.Entity.dll

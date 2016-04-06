@@ -10,21 +10,18 @@ using System.Windows.Forms;
 using Gamificationlibrary.DataBase;
 using Gamificationlibrary;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormTest
 {
     public partial class Form1 : Form
     {
-        SqlConnectionStringBuilder connect;
+        MySqlConnection connect;
         public Form1()
         {
             InitializeComponent();
-            connect = new SqlConnectionStringBuilder();
-
-            connect.InitialCatalog = "Gamefication";
-            connect.DataSource = @"(local)\SQLEXPRESS";
-            connect.ConnectTimeout = 30;
-            connect.IntegratedSecurity = true;
+            string сon = "server=localhost;user id=root;database=gamigicationdb";
+            connect = new MySqlConnection(сon);
 
         }
 
@@ -36,7 +33,7 @@ namespace WindowsFormTest
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (Account.Login(new SqlConnection(connect.ConnectionString), textBox1.Text, textBox2.Text))
+            if (Account.Login(new MySqlConnection(connect.ConnectionString), textBox1.Text, textBox2.Text))
             {
                 this.Hide();
                 Profile profile = new Profile();
@@ -53,7 +50,7 @@ namespace WindowsFormTest
             if (textBox6.Text == textBox7.Text)
             {
                 GamificationConnectGamification.OpenConnection(connect.ConnectionString);
-                if (Account.Registration(new SqlConnection(connect.ConnectionString), textBox4.Text, textBox3.Text, textBox6.Text, textBox7.Text, textBox5.Text))
+                if (Account.Registration(new MySqlConnection(connect.ConnectionString), textBox4.Text, textBox3.Text, textBox6.Text, textBox7.Text, textBox5.Text))
                 {
                     this.Hide();
                     Profile profile= new Profile();
