@@ -23,7 +23,7 @@ namespace WindowsFormTest
         {
             InitializeComponent();
             label1.Text = Account.nickname_user;
-            string сon = "server=localhost;user id=root;database=gamigicationdb";
+            string сon = "server=localhost;user id=root; password=ytdbvjdybq96;database=gamigicationdb";
             connect = new MySqlConnection(сon);
             user = new UserProfile(Account.id_user, new MySqlConnection(connect.ConnectionString));
             user.loadInformation();
@@ -37,10 +37,12 @@ namespace WindowsFormTest
             textBox2.Text = "" + user.email;
             label2.Text = "" + user.titleLevel;
             label3.Text = "" + user.titleRank;
-            string pathAvatar = Application.StartupPath + "\\icon-user-default.png";
-            if (user.imageUser == "")
+            if (user.imageUser.Length > 0)
             {
-                pictureBox1.Image = Image.FromFile(Path.GetFullPath(pathAvatar));
+                pictureBox1.Image = byteArrayToImage(user.imageUser);
+            }
+            else {
+                pictureBox1.Image = Image.FromFile(Application.StartupPath+ "\\icon-user-default.png");
             }
         }
 
@@ -81,7 +83,26 @@ namespace WindowsFormTest
                     textBox3.BackColor = Color.Red;
                 }
             }
+            Users.UpdateImage(Account.id_user, imageToByteArray(pictureBox1.Image));
             GamificationConnectGamification.CloseConnection();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog(); opf.Filter = "Choose Image(*.jpg; *.png; *.gif)|*.jpg; *.png; *.gif";
+            if (opf.ShowDialog() == DialogResult.OK) { pictureBox1.Image = Image.FromFile(opf.FileName); }
+        }
+        public static byte[] imageToByteArray(Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+        public static Image byteArrayToImage(byte[] byteArrayIn)
+        {           
+            MemoryStream stream = new MemoryStream(byteArrayIn);           
+            var newImage = Image.FromStream(stream); stream.Dispose();
+            return newImage;
         }
     }
 }

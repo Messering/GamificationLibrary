@@ -17,10 +17,11 @@ namespace WindowsFormTest
     public partial class Form1 : Form
     {
         MySqlConnection connect;
+        byte[] image;
         public Form1()
         {
             InitializeComponent();
-            string сon = "server=localhost;user id=root;database=gamigicationdb";
+            string сon = "server=localhost;user id=root; password=ytdbvjdybq96;database=gamigicationdb";
             connect = new MySqlConnection(сon);
 
         }
@@ -50,7 +51,7 @@ namespace WindowsFormTest
             if (textBox6.Text == textBox7.Text)
             {
                 GamificationConnectGamification.OpenConnection(connect.ConnectionString);
-                if (Account.Registration(new MySqlConnection(connect.ConnectionString), textBox4.Text, textBox3.Text, textBox6.Text, textBox7.Text, textBox5.Text))
+                if (Account.Registration(new MySqlConnection(connect.ConnectionString), textBox4.Text, textBox3.Text, textBox6.Text, textBox7.Text,image=null, textBox5.Text))
                 {
                     this.Hide();
                     Profile profile= new Profile();

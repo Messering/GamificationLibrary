@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data.SqlClient;
 
 namespace Gamificationlibrary.DataBase
@@ -10,7 +11,7 @@ namespace Gamificationlibrary.DataBase
             string sql = string.Format("Insert Into Activity" +
                    "(title, content, Images, id_user) Values(@title, @content, @Images, @id_user)");
 
-            using (SqlCommand cmd = new SqlCommand(sql, connect))
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 cmd.Parameters.AddWithValue("@title", title);
                 cmd.Parameters.AddWithValue("@content", content);
@@ -21,7 +22,7 @@ namespace Gamificationlibrary.DataBase
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Exception error = new Exception("Error adding activity!", ex);
                     throw error;
@@ -32,13 +33,13 @@ namespace Gamificationlibrary.DataBase
         public static void Delete(int id)
         {
             string sql = string.Format("Delete from Activity where id_activity = '{0}'", id);
-            using (SqlCommand cmd = new SqlCommand(sql, connect))
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 try
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Exception error = new Exception("Error can not be removed from the list of activities!", ex);
                     throw error;
@@ -50,13 +51,13 @@ namespace Gamificationlibrary.DataBase
         {
             string sql = string.Format("Update Activity Set '{0}' = '{1}' Where id_activity = '{2}'",
                    change_colum, change_value, id);
-            using (SqlCommand cmd = new SqlCommand(sql, connect))
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 try
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Exception error = new Exception("Updating error not occurred!", ex);
                     throw error;
@@ -68,13 +69,13 @@ namespace Gamificationlibrary.DataBase
         {
             string sql = string.Format("Update Activity Set '{0}' = '{1}' Where id_activity = '{2}'",
                    change_colum, change_value, id);
-            using (SqlCommand cmd = new SqlCommand(sql, connect))
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 try
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Exception error = new Exception("Updating error not occurred!", ex);
                     throw error;

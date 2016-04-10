@@ -1,15 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using Gamificationlibrary.DataBase;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace Gamificationlibrary
 {
-    public class Account
+    public class Account : GamificationConnectGamification
     {
 
         public static string nickname_user { get; set; }
-        public static bool Registration(SqlConnection connect,string name, string nickname, string passwords, string confirm_passwords, string email = "") {
+        public static int id_user;
+        /// <summary>
+        /// The method for registration
+        /// </summary>
+        /// <param name="connect"></param>
+        /// <param name="name"></param>
+        /// <param name="nickname"></param>
+        /// <param name="passwords"></param>
+        /// <param name="confirm_passwords"></param>
+        /// <param name="email"></param>
+        /// <returns>true or false is registration</returns>
+        public static bool Registration(MySqlConnection connect, string name, string nickname, string passwords, string confirm_passwords, byte[] image = null, string email = "") {
             try
             {
                 connect.Open();
@@ -19,10 +29,10 @@ namespace Gamificationlibrary
                 Exception error = new Exception("Error with the databse connection!", ex);
                 throw error;
             }
-            string qry = "Select * from dbo.Users where nickname=@nickname";
-            SqlCommand com = new SqlCommand(qry, connect);
+            string qry = "Select * from Users where nickname=@nickname";
+            MySqlCommand com = new MySqlCommand(qry, connect);
             com.Parameters.AddWithValue("@nickname", nickname);
-            SqlDataReader dr = com.ExecuteReader();
+            MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
             {
                 if (dr.HasRows == true)
@@ -32,16 +42,27 @@ namespace Gamificationlibrary
           }
             if (dr.HasRows == false)
             {
-                Users.Insert(name, nickname, passwords, email);
+                image = new byte[0];
+                Users.Insert(name, nickname, passwords,image, email);
+                connect.Close();
                 nickname_user = nickname;
+                CreateProfile(nickname, connect);
                 return true;
             }
             
             connect.Close();
             return false;
-        }                                   
+        }
 
-        public static bool Login(SqlConnection connect, string nickname, string passwords) {
+
+        /// <summary>
+        /// The method for login
+        /// </summary>
+        /// <param name="connect"></param>
+        /// <param name="nickname"></param>
+        /// <param name="passwords"></param>
+        /// <returns>true or false is login</returns>
+        public static bool Login(MySqlConnection connect, string nickname, string passwords) {
             try
             {
                 connect.Open();
@@ -51,16 +72,17 @@ namespace Gamificationlibrary
                 Exception error = new Exception("Error with the databse connection!", ex);
                 throw error;
             }
-            string qry = "Select * from dbo.Users where passwords=@passwords and nickname=@nickname";
-            SqlCommand com = new SqlCommand(qry, connect);
+            string qry = "Select * from Users where passwords=@passwords and nickname=@nickname";
+            MySqlCommand com = new MySqlCommand(qry, connect);
             com.Parameters.AddWithValue("@nickname", nickname);
             com.Parameters.AddWithValue("@passwords", passwords);
-            SqlDataReader dr = com.ExecuteReader();
+            MySqlDataReader dr = com.ExecuteReader();
 
             while (dr.Read())
             {
                 if (dr.HasRows == true)
                 {
+                    id_user = Convert.ToInt32(dr[0]);
                     nickname_user = nickname;
                     return true;                  
                 }
@@ -69,7 +91,25 @@ namespace Gamificationlibrary
             {
                 return false;
             }
+            connect.Close();
             return false;
+        }
+
+        /// <summary>
+        /// Create a profile after registration
+        /// </summary>
+        /// <param name="nickname"></param>
+        /// <param name="connect"></param>
+        public static void CreateProfile(string nickname, MySqlConnection connect)
+        {
+            connect.Open();
+            string strSQL = String.Format("SELECT id_user FROM Users Where nickname = '{0}'", nickname);
+            MySqlCommand myCommand = new MySqlCommand(strSQL, connect);
+            MySqlDataReader dr = myCommand.ExecuteReader();
+            while (dr.Read())
+                id_user = Convert.ToInt32(dr[0]);
+                Profile.Insert(id_user, 0, 100, 200);               
+            connect.Close();
         }
     }
 }

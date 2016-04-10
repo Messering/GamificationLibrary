@@ -1,14 +1,14 @@
-﻿using System.Data.SqlClient;
+﻿using MySql.Data.MySqlClient;
 
 namespace Gamificationlibrary.DataBase
 {
     public class GamificationConnectGamification
     {
-        protected static SqlConnection connect = null;
+        protected static MySqlConnection connect = null;
 
         public static void OpenConnection(string connectionString)
         {
-            connect = new SqlConnection(connectionString);
+            connect = new MySqlConnection(connectionString);
             connect.Open();
         }
 

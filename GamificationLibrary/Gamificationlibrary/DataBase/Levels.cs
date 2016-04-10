@@ -1,26 +1,28 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data.SqlClient;
 
 namespace Gamificationlibrary.DataBase
 {
     public class Levels: GamificationConnectGamification
     {
-        public static void Insert(string title, int rank, int points)
+        public static void Insert(string title, int points, byte[] Images = null, string note = "")
         {
             string sql = string.Format("Insert Into Levels" +
-                   "(title, rank, points) Values(@title, @rank, @points)");
+                   "(title, Images, points, note) Values(@title, @Images, @points, @note)");
 
-            using (SqlCommand cmd = new SqlCommand(sql, connect))
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 cmd.Parameters.AddWithValue("@title", title);
-                cmd.Parameters.AddWithValue("@rank", rank);
+                cmd.Parameters.AddWithValue("@Images", Images);
                 cmd.Parameters.AddWithValue("@points", points);
+                cmd.Parameters.AddWithValue("@note", note);
 
                 try
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Exception error = new Exception("Failed to add level!", ex);
                     throw error;
@@ -31,13 +33,13 @@ namespace Gamificationlibrary.DataBase
         public static void Delete(int id)
         {
             string sql = string.Format("Delete from Levels where id_level = '{0}'", id);
-            using (SqlCommand cmd = new SqlCommand(sql, connect))
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 try
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Exception error = new Exception("Failed to delete level!", ex);
                     throw error;
@@ -49,13 +51,31 @@ namespace Gamificationlibrary.DataBase
         {
             string sql = string.Format("Update Levels Set '{0}' = '{1}' Where id_level = '{2}'",
                    change_colum, change_value, id);
-            using (SqlCommand cmd = new SqlCommand(sql, connect))
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 try
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
+                {
+                    Exception error = new Exception("Updating error not occurred!", ex);
+                    throw error;
+                }
+            }
+        }
+
+        public static void UpdateImage(int id, byte[] newImage)
+        {
+            string sql = string.Format("Update Levels Set Images = '{0}' Where id_level = '{1}'",
+                   newImage, id);
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
+            {
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (MySqlException ex)
                 {
                     Exception error = new Exception("Updating error not occurred!", ex);
                     throw error;
@@ -67,13 +87,13 @@ namespace Gamificationlibrary.DataBase
         {
             string sql = string.Format("Update Level Set '{0}' = '{1}' Where id_level = '{2}'",
                    change_colum, change_value, id);
-            using (SqlCommand cmd = new SqlCommand(sql, connect))
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 try
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Exception error = new Exception("Updating error not occurred!", ex);
                     throw error;

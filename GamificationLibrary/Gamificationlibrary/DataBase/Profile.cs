@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data.SqlClient;
 
 namespace Gamificationlibrary.DataBase
@@ -10,7 +11,7 @@ namespace Gamificationlibrary.DataBase
             string sql = string.Format("Insert Into Profiles" +
                    "(id_user, points, level, rank) Values(@id_user, @points, @level, @rank)");
 
-            using (SqlCommand cmd = new SqlCommand(sql, connect))
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 cmd.Parameters.AddWithValue("@id_user", id_user);
                 cmd.Parameters.AddWithValue("@points", points);
@@ -21,7 +22,7 @@ namespace Gamificationlibrary.DataBase
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Exception error = new Exception("Error creating user!", ex);
                     throw error;
@@ -31,14 +32,14 @@ namespace Gamificationlibrary.DataBase
 
         public static void Delete(int id)
         {
-            string sql = string.Format("Delete from Profiles where id = '{0}'", id);
-            using (SqlCommand cmd = new SqlCommand(sql, connect))
+            string sql = string.Format("Delete from Profiles where id_user = '{0}'", id);
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 try
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Exception error = new Exception("Error can not be removed user!", ex);
                     throw error;
@@ -48,15 +49,15 @@ namespace Gamificationlibrary.DataBase
 
         public static void Update(int id, string change_colum, int change_value)
         {
-            string sql = string.Format("Update Profiles Set '{0}' = '{1}' Where id = '{2}'",
+            string sql = string.Format("Update Profiles Set '{0}' = '{1}' Where id_user = '{2}'",
                    change_colum, change_value, id);
-            using (SqlCommand cmd = new SqlCommand(sql, connect))
+            using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 try
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Exception error = new Exception("Error updating profile!", ex);
                     throw error;
