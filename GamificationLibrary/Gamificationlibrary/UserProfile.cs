@@ -88,6 +88,10 @@ namespace Gamificationlibrary
             connect.Close();
         }
 
+        /// <summary>
+        /// add points user
+        /// </summary>
+        /// <param name="point"></param>
         public void addPoints(int point)
         {
             connect.Open();

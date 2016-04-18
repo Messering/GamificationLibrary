@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Gamificationlibrary.DataBase
 {
@@ -83,22 +84,40 @@ namespace Gamificationlibrary.DataBase
             }
         }
 
-        public static void UpdateImage(int id, byte[] newImage)
+        public static void UpdateImage(int id, String FileName)
+
         {
-            string sql = string.Format("Update Users Set image = '{0}' Where id_user = '{1}'",
-                   newImage, id);
+
+            string sql = string.Format("Update Users Set image = @FILE Where id_user = '{0}'", id);
+
+
+
             using (MySqlCommand cmd = new MySqlCommand(sql, connect))
+
             {
+
                 try
+
                 {
+
+                    cmd.Parameters.AddWithValue("@FILE", File.ReadAllBytes(FileName));
+
                     cmd.ExecuteNonQuery();
+
                 }
+
                 catch (MySqlException ex)
+
                 {
+
                     Exception error = new Exception("Updating error not occurred!", ex);
+
                     throw error;
+
                 }
+
             }
+
         }
     }
 }

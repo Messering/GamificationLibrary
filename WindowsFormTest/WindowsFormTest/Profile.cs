@@ -19,6 +19,7 @@ namespace WindowsFormTest
     {
         MySqlConnection connect;
         UserProfile user;
+        string FileName;
         public Profile()
         {
             InitializeComponent();
@@ -83,14 +84,16 @@ namespace WindowsFormTest
                     textBox3.BackColor = Color.Red;
                 }
             }
-            Users.UpdateImage(Account.id_user, imageToByteArray(pictureBox1.Image));
+            Users.UpdateImage(Account.id_user, FileName);
             GamificationConnectGamification.CloseConnection();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             OpenFileDialog opf = new OpenFileDialog(); opf.Filter = "Choose Image(*.jpg; *.png; *.gif)|*.jpg; *.png; *.gif";
-            if (opf.ShowDialog() == DialogResult.OK) { pictureBox1.Image = Image.FromFile(opf.FileName); }
+            if (opf.ShowDialog() == DialogResult.OK) {
+                FileName = opf.FileName;
+                pictureBox1.Image = Image.FromFile(opf.FileName); }
         }
         public static byte[] imageToByteArray(Image imageIn)
         {
