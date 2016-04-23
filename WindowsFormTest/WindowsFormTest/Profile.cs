@@ -20,15 +20,18 @@ namespace WindowsFormTest
         MySqlConnection connect;
         UserProfile user;
         string FileName;
+        Level leveluser = new Level();
         public Profile()
         {
             InitializeComponent();
             label1.Text = Account.nickname_user;
             string сon = "server=localhost;user id=root; password=ytdbvjdybq96;database=gamigicationdb";
             connect = new MySqlConnection(сon);
+            GamificationConnectGamification.OpenConnection(connect.ConnectionString);
             user = new UserProfile(Account.id_user, new MySqlConnection(connect.ConnectionString));
             user.loadInformation();
             load(user);
+            GamificationConnectGamification.CloseConnection();
         }
 
         private void load(UserProfile user) {
@@ -38,6 +41,7 @@ namespace WindowsFormTest
             textBox2.Text = "" + user.email;
             label2.Text = "" + user.titleLevel;
             label3.Text = "" + user.titleRank;
+            title = user.titleLevel;
             if (user.imageUser.Length > 0)
             {
                 pictureBox1.Image = byteArrayToImage(user.imageUser);
@@ -106,6 +110,27 @@ namespace WindowsFormTest
             MemoryStream stream = new MemoryStream(byteArrayIn);           
             var newImage = Image.FromStream(stream); stream.Dispose();
             return newImage;
+        }
+
+        string title;
+        private void button5_Click(object sender, EventArgs e)
+        {
+            GamificationConnectGamification.OpenConnection(connect.ConnectionString);
+            leveluser.searchLevel(title);
+            leveluser.backLevelUser();
+            label2.Text = leveluser.title;
+            title = leveluser.title;
+            GamificationConnectGamification.CloseConnection();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            GamificationConnectGamification.OpenConnection(connect.ConnectionString);
+            leveluser.searchLevel(title);
+            leveluser.nextLevelUser();
+            label2.Text = leveluser.title;
+            title = leveluser.title;
+            GamificationConnectGamification.CloseConnection();
         }
     }
 }

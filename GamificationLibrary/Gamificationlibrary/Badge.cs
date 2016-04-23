@@ -21,7 +21,7 @@ namespace Gamificationlibrary
         /// <summary>
         /// Add new badge
         /// </summary>
-        public void addnBadge() {
+        public void addBadge() {
             connect.Open();
             Badges.Insert(title, points, Images=null, note="", descriptions="");
             connect.Close();

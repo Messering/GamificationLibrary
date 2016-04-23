@@ -58,6 +58,7 @@ namespace Gamificationlibrary
         /// <param name="title"></param>
         public void searchLevel(string title)
         {
+            connect.Close();
             connect.Open();
             string strSQL1 = String.Format("SELECT * FROM Levels Where title = '{0}'", title);
             MySqlCommand myCommand1 = new MySqlCommand(strSQL1, connect);
@@ -66,7 +67,7 @@ namespace Gamificationlibrary
             {
                 id_level = (int)dr1[0];
                 title = dr1[1].ToString();
-                blob = (byte[])dr1[2];
+                //blob = (byte[])dr1[2];
                 points = (int)dr1[3];
                 note = dr1[4].ToString();
             }
@@ -106,7 +107,7 @@ namespace Gamificationlibrary
             {
                 id_level = (int)dr1[0];
                 title = dr1[1].ToString();
-                blob = (byte[])dr1[2];
+               // blob = (byte[])dr1[2];
                 points = (int)dr1[3];
                 note = dr1[4].ToString();
             }
@@ -125,7 +126,7 @@ namespace Gamificationlibrary
             {
                 id_level = (int)dr1[0];
                 title = dr1[1].ToString();
-                blob = (byte[])dr1[2];
+              //  blob = (byte[])dr1[2];
                 points = (int)dr1[3];
                 note = dr1[4].ToString();
             }
