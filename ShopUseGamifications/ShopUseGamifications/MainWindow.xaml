@@ -4,11 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShopUseGamifications"
-        mc:Ignorable="d"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" 
        Title="UnrealWindow" Height="350" Width="350" x:Name="MyWindow"
         AllowsTransparency="True" Background="Transparent" WindowStyle="None"  MouseLeftButtonDown="move_MouseLeftButtonDown">
     <Grid Height="300" Width="300">
-        <Border Width="auto" Height="279" BorderBrush="LimeGreen" BorderThickness="2"
+        <Border Width="auto" Height="279" BorderBrush="LimeGreen" 
                 CornerRadius="0,30,0,30" VerticalAlignment="Bottom" Margin="0,0,-25,21">
             <Border.Background>
                 <LinearGradientBrush>
@@ -68,17 +68,17 @@
                         </TransformGroup>
                     </TextBox.RenderTransform>
                 </TextBox>
-                <TextBox Name="textBoxPassword" Margin="42,196,90,86" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
-                    <TextBox.RenderTransform>
+                <PasswordBox Name="textBoxPassword" Margin="42,196,90,86" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
+                    <PasswordBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform AngleX="-30"/>
                             <RotateTransform/>
                             <TranslateTransform X="-6"/>
                         </TransformGroup>
-                    </TextBox.RenderTransform>
-                </TextBox>
-                <Button x:Name="Sign" Content="Sign up" Background="#cee3ff" HorizontalAlignment="Left" Margin="26,276,0,0" VerticalAlignment="Top" Width="289" Height="23" RenderTransformOrigin="0.5,0.5" Click="Sign_Click">
+                    </PasswordBox.RenderTransform>
+                </PasswordBox>
+                <Button x:Name="Sign" Content="Sign up" BorderThickness="0" Background="#cee3ff" HorizontalAlignment="Left" Margin="26,276,0,0" VerticalAlignment="Top" Width="289" Height="23" RenderTransformOrigin="0.5,0.5" Click="Sign_Click">
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -188,26 +188,26 @@
                         </TransformGroup>
                     </TextBox.RenderTransform>
                 </TextBox>
-                <TextBox x:Name="textBoxPasswords" Margin="95,195,87,87" RenderTransformOrigin="0.611,0.611">
-                    <TextBox.RenderTransform>
+                <PasswordBox x:Name="textBoxPasswords" Margin="95,195,87,87" RenderTransformOrigin="0.611,0.611">
+                    <PasswordBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform AngleX="-30"/>
                             <RotateTransform/>
                             <TranslateTransform X="-6"/>
                         </TransformGroup>
-                    </TextBox.RenderTransform>
-                </TextBox>
-                <TextBox x:Name="textBoxConfirmPasswords" Margin="132,236,50,46" RenderTransformOrigin="0.611,0.611">
-                    <TextBox.RenderTransform>
+                    </PasswordBox.RenderTransform>
+                </PasswordBox>
+                <PasswordBox x:Name="textBoxConfirmPasswords" Margin="132,236,50,46" RenderTransformOrigin="0.611,0.611">
+                    <PasswordBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform AngleX="-30"/>
                             <RotateTransform/>
                             <TranslateTransform X="-6"/>
                         </TransformGroup>
-                    </TextBox.RenderTransform>
-                </TextBox>
+                    </PasswordBox.RenderTransform>
+                </PasswordBox>
                 <TextBlock  Height="16" HorizontalAlignment="Left" Margin="35,56,0,0" x:Name ="errormessageNick" VerticalAlignment="Top" Width="243"  OpacityMask="Crimson" Foreground="#FFE5572C" RenderTransformOrigin="0.5,0.5" >
                     <TextBlock.RenderTransform>
                         <TransformGroup>
@@ -238,7 +238,7 @@
                         </TransformGroup>
                     </TextBlock.RenderTransform>
                 </TextBlock>
-                <TextBlock  Height="16" HorizontalAlignment="Left" Margin="36,176,0,0" x:Name ="errormessagePassword" VerticalAlignment="Top" Width="230"  OpacityMask="Crimson" Foreground="#FFE5572C" RenderTransformOrigin="0.5,0.5" >
+                <TextBlock  Height="16" HorizontalAlignment="Left" Margin="36,176,0,0" x:Name ="errormessagePassword" VerticalAlignment="Top" Width="271"  OpacityMask="Crimson" Foreground="#FFE5572C" RenderTransformOrigin="0.5,0.5" >
                     <TextBlock.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -248,7 +248,17 @@
                         </TransformGroup>
                     </TextBlock.RenderTransform>
                 </TextBlock>
-                <TextBlock  Height="16" HorizontalAlignment="Left" Margin="33,217,0,0" x:Name ="errormessageConfirmPassword" VerticalAlignment="Top" Width="270"  OpacityMask="Crimson" Foreground="#FFE5572C" RenderTransformOrigin="0.5,0.5" >
+                <TextBlock  Height="16" HorizontalAlignment="Left" Margin="33,217,0,0" x:Name ="errormessageConfirmPassword" VerticalAlignment="Top" Width="284"  OpacityMask="Crimson" Foreground="#FFE5572C" RenderTransformOrigin="0.5,0.5" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="-25"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-6"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock  Height="21" HorizontalAlignment="Left" Margin="67,48,0,0" x:Name ="errormessageLogin" VerticalAlignment="Top" Width="213"  OpacityMask="Crimson" Foreground="#FFE5572C" RenderTransformOrigin="0.5,0.5" FontSize="16" FontStyle="Italic" >
                     <TextBlock.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
