@@ -16,6 +16,9 @@ namespace Gamificationlibrary
         public string note;
         public byte[] blob;
 
+        public int minPoints { get; private set; }
+        public int maxPoints { get; private set; }
+
         /// <summary>
         /// Add new rank
         /// </summary>
@@ -138,8 +141,16 @@ namespace Gamificationlibrary
             connect.Close();
         }
 
-        public void addActivity() { }
-        public void addHistory() { }
-
+        public void progressRank(string title)
+        {
+            searchRank(title);
+            minPoints = points;
+            nextRankUser();
+            maxPoints = points;
+        }
+        public void addActivity(string title, string content) {
+            //Activity.Insert()
+        }
+        
     }
 }

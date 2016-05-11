@@ -6,17 +6,16 @@ namespace Gamificationlibrary.DataBase
 {
   public class History: GamificationConnectGamification
     {
-        public static void Insert(int id_user, int points, DateTime record_date, int id_level)
+        public static void Insert(int id_user, int points, DateTime record_date)
         {
             string sql = string.Format("Insert Into History" +
-                   "(id_user, points, record_date, id_level) Values(@id_user, @points, @record_date, @id_level)");
+                   "(id_user, points, record_date, id_level) Values(@id_user, @points, @record_date");
 
             using (MySqlCommand cmd = new MySqlCommand(sql, connect))
             {
                 cmd.Parameters.AddWithValue("@id_user", id_user);
                 cmd.Parameters.AddWithValue("@points", points);
                 cmd.Parameters.AddWithValue("@record_date", record_date);
-                cmd.Parameters.AddWithValue("@id_level", id_level);
 
                 try
                 {

@@ -15,6 +15,8 @@ namespace Gamificationlibrary
         public int id_level;
         public string note;
         public byte[] blob;
+        public int minPoints { get; private set; }
+        public int maxPoints { get; private set; }
 
         /// <summary>
         /// Add new level
@@ -138,6 +140,16 @@ namespace Gamificationlibrary
             this.Dispose();
         }
         public void addActivity() { }
-        public void addHistory() { }
+
+        public void progressLevel(string title) {
+            searchLevel(title);
+            minPoints = points;
+            nextLevelUser();
+            maxPoints = points;
+        }
+
+        public void levelGraphActivity() {
+
+        }
     }
 }

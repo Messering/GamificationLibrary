@@ -75,9 +75,7 @@ id_history int auto_increment NOT NULL ,
 id_user int NOT NULL,
 points int NOT NULL,
 record_date Date NOT NULL,
-id_level int NOT NULL,
-primary key (id_history),
-FOREIGN KEY (id_level) REFERENCES Levels(id_level)
+primary key (id_history)
 );
 
 create table `GamigicationDB`.`Profiles`(

@@ -8,6 +8,7 @@ namespace Gamificationlibrary
 {
    public  interface Points
     {
+
         string getTitle();
         int getPoints();
 

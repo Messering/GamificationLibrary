@@ -9,6 +9,8 @@ F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationl
 F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\bin\Debug\Gamificationlibrary.dll
 F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\bin\Debug\Gamificationlibrary.pdb
 F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\bin\Debug\MySql.Data.dll
-F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.csprojResolveAssemblyReference.cache
 F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.dll
 F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.pdb
+F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.Properties.Resources.resources
+F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.csproj.GenerateResource.Cache
+F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.csprojResolveAssemblyReference.cache

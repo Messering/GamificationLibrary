@@ -104,14 +104,14 @@ namespace Gamificationlibrary
             connect.Close();
         }
 
-        public void deleteBadgesUser() {
-
+        public void deleteBadgesUser(int id) {
+            ListBadges.Delete(id);
         }
         public void Dispose() {
             this.Dispose();
         }
         public void addActivity() { }
-        public void addHistory() { }
+
 
     }
 }

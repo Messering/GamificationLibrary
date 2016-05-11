@@ -6,7 +6,7 @@
         MinWidth="810"
         MinHeight="560"
         Height="562"
-        Width="1000"
+        Width="700"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip">
@@ -178,11 +178,11 @@
         </Grid>
         <TabControl Style="{StaticResource TabControlStyle}" Margin="10,45,10,10" SelectionChanged="TabControl_SelectionChanged">
             <TabItem x:Name="Profile" Style="{StaticResource TabItemStyle}" Header="Profile">
-                <Grid HorizontalAlignment="Left" Height="216" VerticalAlignment="Top" Width="270">
-                    <TextBlock x:Name="userLevel" TextWrapping="Wrap" Text="UserLevel" Height="19" VerticalAlignment="Bottom" Margin="0,0,143,197"/>
-                    <Image x:Name="image" Margin="23,90,125,10" Source="Resources\default_avatar.png"/>
-                    <TextBlock x:Name="userName" TextWrapping="Wrap" Margin="0,46,143,146"><Run Text="UserName"/></TextBlock>
-                    <TextBlock x:Name="userEmail" TextWrapping="Wrap" Text="UserEmail" Margin="0,24,143,176"/>
+                <Grid HorizontalAlignment="Left" Height="216" VerticalAlignment="Top" Width="294">
+                    <TextBlock x:Name="userLevel" TextWrapping="Wrap" Text="UserLevel" Height="19" VerticalAlignment="Bottom" Margin="0,0,143,187"/>
+                    <Image x:Name="image" Margin="148,10,0,90" Source="Resources\default_avatar.png"/>
+                    <TextBlock x:Name="userName" TextWrapping="Wrap" Margin="0,102,143,90"><Run Text="UserName"/></TextBlock>
+                    <TextBlock x:Name="userEmail" TextWrapping="Wrap" Text="UserEmail" Margin="0,52,143,148"/>
                 </Grid>
             </TabItem>
             <TabItem Style="{StaticResource TabItemStyle}" Header="Tab2" Content="tab2"/>

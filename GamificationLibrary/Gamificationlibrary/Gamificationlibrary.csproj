@@ -57,8 +57,14 @@
     <Compile Include="DataBase\Prizes.cs" />
     <Compile Include="DataBase\Profile.cs" />
     <Compile Include="DataBase\Ranks.cs" />
+    <Compile Include="Histories.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Points.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Rank.cs" />
     <Compile Include="UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,7 +74,12 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
