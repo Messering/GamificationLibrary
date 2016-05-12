@@ -19,7 +19,7 @@ namespace Gamificationlibrary
         /// <param name="confirm_passwords"></param>
         /// <param name="email"></param>
         /// <returns>true or false is registration</returns>
-        public static bool Registration(MySqlConnection connect, string name, string nickname, string passwords, string confirm_passwords, byte[] image = null, string email = "") {
+        public static bool Registration(MySqlConnection connect, string name, string nickname, string passwords, string confirm_passwords, byte[] image, string email = "") {
             try
             {
                 connect.Open();
@@ -42,7 +42,6 @@ namespace Gamificationlibrary
           }
             if (dr.HasRows == false)
             {
-                image = new byte[0];
                 Users.Insert(name, nickname, passwords,image, email);
                 connect.Close();
                 nickname_user = nickname;

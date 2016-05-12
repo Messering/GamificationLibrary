@@ -1,8 +1,10 @@
 ﻿using Gamificationlibrary;
 using Gamificationlibrary.DataBase;
+using Microsoft.Win32;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,6 +27,7 @@ namespace ShopUseGamifications
     {
         MySqlConnection connect;
         UserProfile user;
+        string newImageName;
         public WindowShopeHome()
         {
             InitializeComponent();
@@ -44,20 +47,29 @@ namespace ShopUseGamifications
             userName.Text = "" + user.name;
             userEmail.Text = "" + user.email;
             userLevel.Text = "" + user.titleLevel;
+            Level level = new Level();
+            LevelBar.Value = user.points;
+            level.progressLevel(user.titleLevel);
+            LevelBar.Minimum = -10;
+            //level.minPoints;
+            LevelBar.Maximum = 10;
+            //level.maxPoints;
+            contentLevelbar.Text = String.Format("{0}/{1}",user.points,LevelBar.Maximum);
+            
             //label3.Text = "" + user.titleRank;
             //title = user.titleLevel;
-          // pictureBox1.Image = byteArrayToImage(user.imageUser);
+          imageUser = ConvertDrawingImageToWPFImage(ConvertImage.byteArrayToImage(user.imageUser));
 
         }
         private void TriggerMoveWindow(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                if (WindowState == System.Windows.WindowState.Maximized)
+                if (WindowState == WindowState.Maximized)
                 {
-                    WindowState = System.Windows.WindowState.Normal;
+                    WindowState = WindowState.Normal;
 
-                    double pct = PointToScreen(e.GetPosition(this)).X / System.Windows.SystemParameters.PrimaryScreenWidth;
+                    double pct = PointToScreen(e.GetPosition(this)).X / SystemParameters.PrimaryScreenWidth;
                     Top = 0;
                     Left = e.GetPosition(this).X - (pct * Width);
                 }
@@ -68,10 +80,10 @@ namespace ShopUseGamifications
 
         private void TriggerMaximize(object sender, MouseButtonEventArgs e)
         {
-            if (WindowState == System.Windows.WindowState.Maximized)
-                WindowState = System.Windows.WindowState.Normal;
-            else if (WindowState == System.Windows.WindowState.Normal)
-                WindowState = System.Windows.WindowState.Maximized;
+            if (WindowState == WindowState.Maximized)
+                WindowState = WindowState.Normal;
+            else if (WindowState == WindowState.Normal)
+                WindowState = WindowState.Maximized;
         }
         private void TriggerClose(object sender, RoutedEventArgs e)
         {
@@ -80,7 +92,7 @@ namespace ShopUseGamifications
 
         private void TriggerMinimize(object sender, RoutedEventArgs e)
         {
-            WindowState = System.Windows.WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
 
         private void Resize_Click(object sender, RoutedEventArgs e)
@@ -88,18 +100,43 @@ namespace ShopUseGamifications
             if (resizeIco.Text == "2")
             {
                 resizeIco.Text = "1";
-                WindowState = System.Windows.WindowState.Normal;
+                WindowState = WindowState.Normal;
             }
             else
             {
                 resizeIco.Text = "2";
-                WindowState = System.Windows.WindowState.Maximized;
+                WindowState = WindowState.Maximized;
             }
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private System.Windows.Controls.Image ConvertDrawingImageToWPFImage(System.Drawing.Image gdiImg)
+        {
+
+
+            System.Windows.Controls.Image img = new System.Windows.Controls.Image();
+
+            //convert System.Drawing.Image to WPF image
+            Bitmap bmp = new Bitmap(gdiImg);
+            IntPtr hBitmap = bmp.GetHbitmap();
+            ImageSource WpfBitmap = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            img.Source = WpfBitmap;
+            img.Stretch = Stretch.Fill;
+            return img;
+        }
+
+        private void btLoadNewPicture_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog(); opf.Filter = "Choose Image(*.jpg; *.png; *.gif)|*.jpg; *.png; *.gif";
+            if (opf.ShowDialog() == true)
+            {
+                newImageName= opf.FileName;
+                imageUser = ConvertDrawingImageToWPFImage(System.Drawing.Image.FromFile(opf.FileName));
+            }
         }
     }
 }
