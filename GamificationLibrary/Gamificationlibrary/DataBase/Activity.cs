@@ -6,7 +6,7 @@ namespace Gamificationlibrary.DataBase
 {
     public class Activity: GamificationConnectGamification
     {
-        public static void Insert(string title, string content, string Images, int id_user)
+        public static void Insert(string title, string content, int id_user, byte[] Images = null)
         {
             string sql = string.Format("Insert Into Activity" +
                    "(title, content, Images, id_user) Values(@title, @content, @Images, @id_user)");

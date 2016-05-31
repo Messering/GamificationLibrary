@@ -110,7 +110,11 @@ namespace Gamificationlibrary
         public void Dispose() {
             this.Dispose();
         }
-        public void addActivity() { }
+        public void addActivity(string titleActivity) {
+            connect.Open();
+            Activity.Insert(titleActivity, title, Account.id_user, Images);
+                connect.Close();
+        }
 
 
     }

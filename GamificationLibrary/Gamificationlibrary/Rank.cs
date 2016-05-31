@@ -148,8 +148,10 @@ namespace Gamificationlibrary
             nextRankUser();
             maxPoints = points;
         }
-        public void addActivity(string title, string content) {
-            //Activity.Insert()
+        public void addActivity(string titleActivity) {
+            connect.Open();
+            Activity.Insert(titleActivity, title, Account.id_user, blob);
+            connect.Close();
         }
         
     }

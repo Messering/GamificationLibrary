@@ -139,17 +139,17 @@ namespace Gamificationlibrary
         {
             this.Dispose();
         }
-        public void addActivity() { }
+        public void addActivity(string titleActivity) {
+            connect.Open();
+            Activity.Insert(titleActivity, title, Account.id_user, blob);
+            connect.Close();
+        }
 
         public void progressLevel(string title) {
             searchLevel(title);
             minPoints = points;
             nextLevelUser();
             maxPoints = points;
-        }
-
-        public void levelGraphActivity() {
-
         }
     }
 }
