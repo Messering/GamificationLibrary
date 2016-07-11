@@ -114,6 +114,7 @@ namespace ShopUseGamifications
                     WindowShopeHome homeForm = new WindowShopeHome();
                     homeForm.ShowDialog();
                 }
+                
                 GamificationConnectGamification.CloseConnection();
             }
             else

@@ -58,7 +58,7 @@
                     <TextBlock Width="8" Height="15" ><Run Text="X"/></TextBlock>
                 </Button>
 
-                <TextBox Name="textBoxLogin" Margin="48,129,84,153" RenderTransformOrigin="0.611,0.611" Visibility="Hidden">
+                <TextBox Name="textBoxLogin" Margin="48,129,84,153"  Visibility="Hidden">
                     <TextBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -68,7 +68,7 @@
                         </TransformGroup>
                     </TextBox.RenderTransform>
                 </TextBox>
-                <PasswordBox Name="textBoxPassword" Margin="42,196,90,86" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
+                <PasswordBox Name="textBoxPassword" Margin="42,196,90,86"  Visibility="Hidden">
                     <PasswordBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -158,13 +158,13 @@
                         </TransformGroup>
                     </Label.RenderTransform>
                 </Label>
-                <TextBox x:Name="textBoxNickname" Margin="115,76,75,206" RenderTransformOrigin="0.611,0.611">
+                <TextBox x:Name="textBoxNickname" Margin="115,76,75,206" RenderTransformOrigin="0.487,0.636">
                     <TextBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform AngleX="-30"/>
                             <RotateTransform/>
-                            <TranslateTransform X="-6"/>
+                            <TranslateTransform X="-6.317"/>
                         </TransformGroup>
                     </TextBox.RenderTransform>
                 </TextBox>

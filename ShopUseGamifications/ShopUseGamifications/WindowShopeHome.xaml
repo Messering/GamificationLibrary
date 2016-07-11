@@ -143,11 +143,11 @@
     <Grid Background="White" OpacityMask="White">
         <Grid Width="270" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,0,0">
             <TextBlock x:Name="Resize"
-        		Margin="212,3,41,0" RenderTransformOrigin="6.591,4.684"
+        		Margin="212,3,41,17" RenderTransformOrigin="6.591,4.684"
                        ><Hyperlink Click="Resize_Click"
         			Style="{StaticResource WindowIconStyle}"><Run x:Name="resizeIco" Text="1"/></Hyperlink></TextBlock>
             <TextBlock x:Name="Minimize" RenderTransformOrigin="-1.321,0.223"
-            	Margin="192,3,62,0"
+            	Margin="192,3,62,17"
                        ><Hyperlink Click="TriggerMinimize"
             		Style="{StaticResource WindowIconStyle}"><Run Text="0"/></Hyperlink></TextBlock>
             <TextBlock x:Name="Closes"
@@ -155,7 +155,7 @@
                        ><Hyperlink Click="TriggerClose"
             		Style="{StaticResource WindowIconStyle}"><Run Text="r"/></Hyperlink></TextBlock>
             <Label x:Name="NickName" Content="Messering" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="10,3,0,0" Height="27"/>
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="103,3,0,0" VerticalAlignment="Top" Width="72" Height="27" BorderBrush="White" Background="White">
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="103,3,0,0" VerticalAlignment="Top" Width="84" Height="27" BorderBrush="White" Background="White" SelectionChanged="Selected_element" >
                 <ComboBoxItem IsSelected="True">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="Resources\status_online.png"  Width="16" Height="16" />
@@ -170,9 +170,9 @@
                     <Image Source="Resources\status_offline.png" Width="16" Height="16" />
                     <TextBlock>Busy</TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="Resources\logout.png" Width="16" Height="16" />
-                    <TextBlock>Log out</TextBlock>
+                <StackPanel x:Name="log_ouItems" Orientation="Horizontal" >
+                    <Image Source="Resources\logout.png" Width="16" Height="16"/>
+                    <TextBlock x:Name="log_outItem">Log out</TextBlock>
                 </StackPanel>
             </ComboBox>
         </Grid>
@@ -186,6 +186,13 @@
 		             Width="151"
 		             Name="LevelBar"
 		             Foreground="#FF566AC3" Height="17" Margin="16,29,0,0" RenderTransformOrigin="0.5,0.5">
+                        <ProgressBar.Background>
+                            <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                                <GradientStop Color="#FFBABABA" Offset="0"/>
+                                <GradientStop Color="#FFC7C7C7" Offset="0.5"/>
+                                <GradientStop Color="#FFEE9E9E" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ProgressBar.Background>
                         <ProgressBar.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -195,17 +202,46 @@
                             </TransformGroup>
                         </ProgressBar.RenderTransform>
                     </ProgressBar>
-                    <TextBlock x:Name="contentLevelbar" Text="{Binding ElementName=LevelBar, Path=Value, StringFormat={}{0:0}/{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-6.952,-3.521" Margin="18,28,425,264" Height="19" Width="139" Foreground="#FFA8C8D6" TextAlignment="Center"  />
-                    <Image x:Name="imageUser" Margin="358,10,10,90" Source="Resources\default_avatar.png"/>
-                    <TextBlock x:Name="userName" TextWrapping="Wrap" Margin="153,148,279,136"><Run Text="UserName"/></TextBlock>
-                    <TextBlock x:Name="userEmail" TextWrapping="Wrap" Text="UserEmail" Margin="153,106,279,178"/>
+                    <TextBlock x:Name="contentLevelbar" Text="{Binding ElementName=LevelBar, Path=Value, StringFormat={}{0:0}/{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-6.952,-3.521" Margin="18,28,425,264" Height="19" Width="139" Foreground="#FF7DC7E8" TextAlignment="Center"  />
+                    <Image Margin="344,12,16,100" Name="imgPhoto" 
+                     Stretch="Fill" />
+                    <TextBox x:Name="userName" TextWrapping="Wrap" Margin="153,148,279,136"  Foreground="#FF474747"></TextBox>
+                    <TextBox x:Name="userEmail" TextWrapping="Wrap" Text="UserEmail" Margin="153,106,279,178" Foreground="#FF474747"/>
                     <Label x:Name="labelEmail" Content="Email" HorizontalAlignment="Right" Margin="0,106,487,0" VerticalAlignment="Top" Width="85" Height="27"/>
                     <Label x:Name="labelName" Content="Name" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Height="27" Width="63"/>
                     <Label x:Name="labelNewPassword" Content="New Password" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="labelNewConfirmPassword" Content="New Confirm Password" HorizontalAlignment="Left" Margin="10,232,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.075,0.462"/>
-                    <TextBlock x:Name="textNewPassword" HorizontalAlignment="Left" Margin="153,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="150"/>
-                    <TextBlock x:Name="textNewConfirmPassword" HorizontalAlignment="Left" Margin="156,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="147"/>
+                    <TextBox x:Name="textNewPassword" HorizontalAlignment="Left" Margin="153,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="160" Foreground="#FF474747" RenderTransformOrigin="0.5,0.5" Background="#FFD6F9FF">
+                        <TextBox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-46.975"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-13.929"/>
+                            </TransformGroup>
+                        </TextBox.RenderTransform>
+                    </TextBox>
+                    <TextBox x:Name="textNewConfirmPassword" HorizontalAlignment="Left" Margin="175,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="164" Foreground="#FF474747" RenderTransformOrigin="0.5,0.5" Background="#FFD6F9FF">
+                        <TextBox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-41.379"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-11.452"/>
+                            </TransformGroup>
+                        </TextBox.RenderTransform>
+                    </TextBox>
                     <Button x:Name="btLoadNewPicture" Content="Load Picture" HorizontalAlignment="Left" Margin="417,243,0,0" VerticalAlignment="Top" Width="75" Click="btLoadNewPicture_Click"/>
+                    <Button x:Name="saveChange" Content="Save change" HorizontalAlignment="Left" Margin="95,278,0,0" VerticalAlignment="Top" Width="102" RenderTransformOrigin="0.474,0.527" Click="button_Click">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.947" ScaleY="1.078"/>
+                                <SkewTransform AngleX="24.548" AngleY="2.594"/>
+                                <RotateTransform Angle="353.501"/>
+                                <TranslateTransform X="4.207" Y="2.24"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
                 </Grid>
             </TabItem>
             <TabItem Style="{StaticResource TabItemStyle}" Header="Tab2" Content="tab2"/>

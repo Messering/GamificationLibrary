@@ -50,7 +50,7 @@ namespace ShopUseGamifications
             Level level = new Level();
             LevelBar.Value = user.points;
             level.progressLevel(user.titleLevel);
-            LevelBar.Minimum = -10;
+            LevelBar.Minimum = -4;
             //level.minPoints;
             LevelBar.Maximum = 10;
             //level.maxPoints;
@@ -58,8 +58,19 @@ namespace ShopUseGamifications
             
             //label3.Text = "" + user.titleRank;
             //title = user.titleLevel;
-          imageUser = ConvertDrawingImageToWPFImage(ConvertImage.byteArrayToImage(user.imageUser));
+          imgPhoto.Source = ImageFromBuffer(user.imageUser);
 
+        }
+
+        public BitmapImage ImageFromBuffer(Byte[] bytes)
+        {
+            MemoryStream stream = new MemoryStream(bytes);
+            stream.Seek(0, SeekOrigin.Begin);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = stream;
+            image.EndInit();
+            return image;
         }
         private void TriggerMoveWindow(object sender, MouseEventArgs e)
         {
@@ -131,11 +142,51 @@ namespace ShopUseGamifications
 
         private void btLoadNewPicture_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog opf = new OpenFileDialog(); opf.Filter = "Choose Image(*.jpg; *.png; *.gif)|*.jpg; *.png; *.gif";
-            if (opf.ShowDialog() == true)
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
             {
-                newImageName= opf.FileName;
-                imageUser = ConvertDrawingImageToWPFImage(System.Drawing.Image.FromFile(opf.FileName));
+                imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
+            }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            GamificationConnectGamification.OpenConnection(connect.ConnectionString);
+            if (userName.Text != user.name)
+            {
+                Users.Update(Account.id_user, "name", userName.Text);
+            }
+
+
+            if (userEmail.Text != user.email)
+            {
+                Users.Update(Account.id_user, "email", userEmail.Text);
+            }
+            if (textNewPassword.Text != "")
+            {
+                if (textNewPassword.Text == user.passwords)
+                {
+                    Users.UpdatePassword(Account.id_user, textNewPassword.Text);
+                }
+                else
+                {
+                    //textNewPassword.Background.Co = System.Drawing.Color.Red;
+                }
+            }
+           // Users.UpdateImage(Account.id_user, FileName);
+            GamificationConnectGamification.CloseConnection();
+        }
+
+        private void Selected_element(object sender, SelectionChangedEventArgs e)
+        {
+            if (comboBox.SelectedItem == log_ouItems) {
+                this.Hide();
+                MainWindow logform = new MainWindow();
+                logform.ShowDialog();
             }
         }
     }
