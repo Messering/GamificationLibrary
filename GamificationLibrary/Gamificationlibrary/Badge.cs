@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Gamificationlibrary
 {
-   public class Badge: GamificationConnectGamification, Points
+   public class Badge: GamificationConnectGamification, IPoints
     {
         public int points;
         public string title;

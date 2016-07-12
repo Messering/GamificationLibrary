@@ -37,6 +37,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,9 +60,10 @@
     <Compile Include="DataBase\Prizes.cs" />
     <Compile Include="DataBase\Profile.cs" />
     <Compile Include="DataBase\Ranks.cs" />
+    <Compile Include="GraphicProgressView.cs" />
     <Compile Include="Histories.cs" />
     <Compile Include="Level.cs" />
-    <Compile Include="Points.cs" />
+    <Compile Include="IPoints.cs" />
     <Compile Include="Prizes.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

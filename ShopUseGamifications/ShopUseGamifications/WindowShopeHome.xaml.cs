@@ -27,19 +27,34 @@ namespace ShopUseGamifications
     {
         MySqlConnection connect;
         UserProfile user;
-        string newImageName;
         public WindowShopeHome()
         {
             InitializeComponent();
-            string сon = "server=localhost;user id=root; password=ytdbvjdybq96;database=gamigicationdb";
+            string сon = "Data Source=10.132.13.224;Persist Security Info=yes;" +
+            "UserId=p_pobereyko; PWD=YZqzK2sj28f3JHSt; database=p_pobereyko;";
             connect = new MySqlConnection(сon);
             GamificationConnectGamification.OpenConnection(connect.ConnectionString);
             user = new UserProfile(Account.id_user, new MySqlConnection(connect.ConnectionString));
             user.loadInformation();
             loadProfile(user);
             GamificationConnectGamification.CloseConnection();
+            s();
         }
 
+        void s() {
+          Line  myLine = new Line();
+            myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+            myLine.X1 = 1;
+            myLine.X2 = 50;
+            myLine.Y1 = 1;
+            myLine.Y2 = 50;
+            
+            myLine.HorizontalAlignment = HorizontalAlignment.Left;
+            myLine.VerticalAlignment = VerticalAlignment.Center;
+            myLine.StrokeThickness = 2;
+            myGrid.Children.Add(myLine);
+            
+        }
         private void loadProfile(UserProfile user)
         {
 
@@ -55,9 +70,8 @@ namespace ShopUseGamifications
             LevelBar.Maximum = 10;
             //level.maxPoints;
             contentLevelbar.Text = String.Format("{0}/{1}",user.points,LevelBar.Maximum);
-            
-            //label3.Text = "" + user.titleRank;
-            //title = user.titleLevel;
+
+            //GraphicProgressView.drawLine(rectang, Histories.getProgressUser(4, new DateTime(2007, 07, 4)), System.Drawing.Color.Coral, 3);
           imgPhoto.Source = ImageFromBuffer(user.imageUser);
 
         }

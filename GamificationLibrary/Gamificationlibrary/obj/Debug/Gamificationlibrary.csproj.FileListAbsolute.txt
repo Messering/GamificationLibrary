@@ -14,3 +14,11 @@ F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationl
 F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.Properties.Resources.resources
 F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.csproj.GenerateResource.Cache
 F:\Gamification\New folder\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.csprojResolveAssemblyReference.cache
+C:\Users\Pobereyko\Documents\GitHub\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.Properties.Resources.resources
+C:\Users\Pobereyko\Documents\GitHub\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.csproj.GenerateResource.Cache
+C:\Users\Pobereyko\Documents\GitHub\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.dll
+C:\Users\Pobereyko\Documents\GitHub\GamificationLibrary\GamificationLibrary\Gamificationlibrary\obj\Debug\Gamificationlibrary.pdb
+C:\Users\Pobereyko\Documents\GitHub\GamificationLibrary\GamificationLibrary\Gamificationlibrary\bin\Debug\Gamificationlibrary.dll.config
+C:\Users\Pobereyko\Documents\GitHub\GamificationLibrary\GamificationLibrary\Gamificationlibrary\bin\Debug\Gamificationlibrary.dll
+C:\Users\Pobereyko\Documents\GitHub\GamificationLibrary\GamificationLibrary\Gamificationlibrary\bin\Debug\Gamificationlibrary.pdb
+C:\Users\Pobereyko\Documents\GitHub\GamificationLibrary\GamificationLibrary\Gamificationlibrary\bin\Debug\MySql.Data.dll

@@ -175,8 +175,9 @@
                     <TextBlock x:Name="log_outItem">Log out</TextBlock>
                 </StackPanel>
             </ComboBox>
+           <Grid x:Name="myGrid"  Margin="129,114,41,-174" Background="Black"/>
         </Grid>
-        <TabControl Style="{StaticResource TabControlStyle}" Margin="10,45,10,10" SelectionChanged="TabControl_SelectionChanged">
+        <TabControl x:Name="Tabcontrol" Style="{StaticResource TabControlStyle}" Margin="10,45,10,10" SelectionChanged="TabControl_SelectionChanged">
             <TabItem x:Name="Profile" Style="{StaticResource TabItemStyle}" Header="Profile">
                 <Grid HorizontalAlignment="Left" Height="311" VerticalAlignment="Top" Width="582" Margin="10,7,0,0">
                     <TextBlock x:Name="userLevel" TextWrapping="Wrap" Text="UserLevel" Height="18" VerticalAlignment="Bottom" Margin="21,0,425,283" TextAlignment="Center"/>

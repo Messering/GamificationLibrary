@@ -20,7 +20,8 @@ namespace ShopUseGamifications
         public MainWindow()
         {
             InitializeComponent();
-            string сon = "server=localhost;user id=root; password=ytdbvjdybq96;database=gamigicationdb";
+            string сon = "Data Source=10.132.13.224;Persist Security Info=yes;" +
+            "UserId=p_pobereyko; PWD=YZqzK2sj28f3JHSt; database=p_pobereyko;";
             connect = new MySqlConnection(сon);
             
         }

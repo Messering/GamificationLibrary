@@ -107,7 +107,7 @@ namespace Gamificationlibrary
             MySqlDataReader dr = myCommand.ExecuteReader();
             while (dr.Read())
                 id_user = Convert.ToInt32(dr[0]);
-                Profile.Insert(id_user, 0, 100, 200);               
+                Profile.Insert(id_user, 0, 1, 200);               
             connect.Close();
         }
     }

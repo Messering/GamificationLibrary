@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gamificationlibrary
 {
-   public  interface Points
+   public  interface IPoints
     {
 
         string getTitle();
