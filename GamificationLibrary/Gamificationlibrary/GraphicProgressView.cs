@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Controls.DataVisualization.Charting;
+using static Gamificationlibrary.Histories;
 
 namespace Gamificationlibrary
 {
@@ -25,7 +26,12 @@ namespace Gamificationlibrary
             control.CreateGraphics().DrawLines(graphPen, pointGraph);
         }
 
-       
+        public static void AreaChartDraw(Chart chart, KeyValuePair<string, int>[] pointGraph,string ChartTitle=null)
+        {
+            chart.Title = ChartTitle;
+            chart.DataContext = pointGraph;
+
+        }
 
     }
 }

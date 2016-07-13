@@ -49,8 +49,9 @@ namespace ShopUseGamifications
                 if (Account.Login(new MySqlConnection(connect.ConnectionString), textBoxLogin.Text, textBoxPassword.Password))
                 {
                     this.Hide();
-                    WindowShopeHome homeForm = new WindowShopeHome();
-                    homeForm.ShowDialog();
+                    
+                    WindowShopeHome homeForms = new WindowShopeHome();
+                    homeForms.ShowDialog();
                 }
                 else
                 {

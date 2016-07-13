@@ -6,24 +6,18 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ShopUseGamifications
 {
     /// <summary>
     /// Логика взаимодействия для WindowShopeHome.xaml
     /// </summary>
-    public partial class WindowShopeHome : Window
+    public partial class WindowShopeHome : Window, IDisposable
     {
         MySqlConnection connect;
         UserProfile user;
@@ -38,23 +32,35 @@ namespace ShopUseGamifications
             user.loadInformation();
             loadProfile(user);
             GamificationConnectGamification.CloseConnection();
-            s();
+
+            // LoadAreaChartData();
+              showColumnChart();
+
         }
 
-        void s() {
-          Line  myLine = new Line();
-            myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
-            myLine.X1 = 1;
-            myLine.X2 = 50;
-            myLine.Y1 = 1;
-            myLine.Y2 = 50;
-            
-            myLine.HorizontalAlignment = HorizontalAlignment.Left;
-            myLine.VerticalAlignment = VerticalAlignment.Center;
-            myLine.StrokeThickness = 2;
-            myGrid.Children.Add(myLine);
-            
+        private void showColumnChart()
+        {
+            GraphicProgressView.AreaChartDraw(areaChart,Histories.getProgressUser(5,DateTime.Now),"Test");
+            GraphicProgressView.AreaChartDraw(columnChart, Histories.getProgressUser(5, DateTime.Now), "Test");
+            GraphicProgressView.AreaChartDraw(pieChart, Histories.getProgressUser(5, DateTime.Now), "Test");
+            GraphicProgressView.AreaChartDraw(barChart, Histories.getProgressUser(5, DateTime.Now), "Test");
+
+            ////Setting data for column chart
+            //columnChart.DataContext = valueList;
+
+            //// Setting data for pie chart
+            //pieChart.DataContext = valueList;
+
+            ////Setting data for area chart
+            ////areaChart.DataContext = valueList;
+
+            ////Setting data for bar chart
+            //barChart.DataContext = valueList;
+
+            ////Setting data for line chart
+            //lineChart.DataContext = valueList;
         }
+
         private void loadProfile(UserProfile user)
         {
 
@@ -202,6 +208,11 @@ namespace ShopUseGamifications
                 MainWindow logform = new MainWindow();
                 logform.ShowDialog();
             }
+        }
+
+        public void Dispose()
+        {
+            this.Dispose();
         }
     }
 }

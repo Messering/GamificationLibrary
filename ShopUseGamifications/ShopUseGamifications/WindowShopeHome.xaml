@@ -1,6 +1,8 @@
 ﻿<Window x:Class="ShopUseGamifications.WindowShopeHome"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         MouseLeftButtonDown="TriggerMoveWindow"  WindowStartupLocation="CenterScreen" 
         Title="MainWindow"
         MinWidth="810"
@@ -175,12 +177,11 @@
                     <TextBlock x:Name="log_outItem">Log out</TextBlock>
                 </StackPanel>
             </ComboBox>
-           <Grid x:Name="myGrid"  Margin="129,114,41,-174" Background="Black"/>
         </Grid>
         <TabControl x:Name="Tabcontrol" Style="{StaticResource TabControlStyle}" Margin="10,45,10,10" SelectionChanged="TabControl_SelectionChanged">
             <TabItem x:Name="Profile" Style="{StaticResource TabItemStyle}" Header="Profile">
-                <Grid HorizontalAlignment="Left" Height="311" VerticalAlignment="Top" Width="582" Margin="10,7,0,0">
-                    <TextBlock x:Name="userLevel" TextWrapping="Wrap" Text="UserLevel" Height="18" VerticalAlignment="Bottom" Margin="21,0,425,283" TextAlignment="Center"/>
+                <Grid HorizontalAlignment="Left" Height="431" VerticalAlignment="Top" Width="750" Margin="10,7,0,0">
+                    <TextBlock x:Name="userLevel" TextWrapping="Wrap" Text="UserLevel" Height="12" VerticalAlignment="Bottom" Margin="13,0,580,409" TextAlignment="Center"/>
                     <ProgressBar HorizontalAlignment="Left"	    
                      Value="{Binding Progress}"
 		             VerticalAlignment="Top"
@@ -203,12 +204,12 @@
                             </TransformGroup>
                         </ProgressBar.RenderTransform>
                     </ProgressBar>
-                    <TextBlock x:Name="contentLevelbar" Text="{Binding ElementName=LevelBar, Path=Value, StringFormat={}{0:0}/{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-6.952,-3.521" Margin="18,28,425,264" Height="19" Width="139" Foreground="#FF7DC7E8" TextAlignment="Center"  />
-                    <Image Margin="344,12,16,100" Name="imgPhoto" 
+                    <TextBlock x:Name="contentLevelbar" Text="{Binding ElementName=LevelBar, Path=Value, StringFormat={}{0:0}/{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-6.952,-3.521" Margin="13,31,598,381" Height="19" Width="139" Foreground="#FF7DC7E8" TextAlignment="Center"  />
+                    <Image Margin="302,10,348,332" Name="imgPhoto" 
                      Stretch="Fill" />
-                    <TextBox x:Name="userName" TextWrapping="Wrap" Margin="153,148,279,136"  Foreground="#FF474747"></TextBox>
-                    <TextBox x:Name="userEmail" TextWrapping="Wrap" Text="UserEmail" Margin="153,106,279,178" Foreground="#FF474747"/>
-                    <Label x:Name="labelEmail" Content="Email" HorizontalAlignment="Right" Margin="0,106,487,0" VerticalAlignment="Top" Width="85" Height="27"/>
+                    <TextBox x:Name="userName" TextWrapping="Wrap" Margin="153,148,446,256"  Foreground="#FF474747"></TextBox>
+                    <TextBox x:Name="userEmail" TextWrapping="Wrap" Text="UserEmail" Margin="153,106,446,298" Foreground="#FF474747"/>
+                    <Label x:Name="labelEmail" Content="Email" HorizontalAlignment="Right" Margin="0,106,655,0" VerticalAlignment="Top" Width="85" Height="27"/>
                     <Label x:Name="labelName" Content="Name" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Height="27" Width="63"/>
                     <Label x:Name="labelNewPassword" Content="New Password" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="labelNewConfirmPassword" Content="New Confirm Password" HorizontalAlignment="Left" Margin="10,232,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.075,0.462"/>
@@ -232,7 +233,7 @@
                             </TransformGroup>
                         </TextBox.RenderTransform>
                     </TextBox>
-                    <Button x:Name="btLoadNewPicture" Content="Load Picture" HorizontalAlignment="Left" Margin="417,243,0,0" VerticalAlignment="Top" Width="75" Click="btLoadNewPicture_Click"/>
+                    <Button x:Name="btLoadNewPicture" Content="Load Picture" HorizontalAlignment="Left" Margin="327,111,0,0" VerticalAlignment="Top" Width="75" Click="btLoadNewPicture_Click"/>
                     <Button x:Name="saveChange" Content="Save change" HorizontalAlignment="Left" Margin="95,278,0,0" VerticalAlignment="Top" Width="102" RenderTransformOrigin="0.474,0.527" Click="button_Click">
                         <Button.RenderTransform>
                             <TransformGroup>
@@ -243,9 +244,55 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                     </Button>
+                    <!-- Area Chart in Code Behind -->
                 </Grid>
             </TabItem>
-            <TabItem Style="{StaticResource TabItemStyle}" Header="Tab2" Content="tab2"/>
+            <TabItem Style="{StaticResource TabItemStyle}" Header="Tab2">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,0,-5,-3">
+                    <Grid HorizontalAlignment="Left" Height="1033" VerticalAlignment="Top" Width="777">
+                        <DVC:Chart HorizontalAlignment="Left" Margin="10,0,0,681" x:Name="columnChart" Title="Column Series Demo" Width="360">
+                            <DVC:Chart.LegendStyle>
+                                <Style TargetType="{x:Type DV:Legend}">
+                                    <Setter Property="Width" Value="0" />
+                                </Style>
+                            </DVC:Chart.LegendStyle>
+                            <DVC:ColumnSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" />
+                        </DVC:Chart>
+                        <DVC:Chart  x:Name="pieChart" Title="Pie Series Demo" VerticalAlignment="Top" Margin="398,0,10,0" Height="352">
+                            <DVC:Chart.LegendStyle>
+                                <Style TargetType="{x:Type DV:Legend}">
+                                    <Setter Property="Width" Value="0" />
+                                </Style>
+                            </DVC:Chart.LegendStyle>
+                            <DVC:PieSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True" />
+                        </DVC:Chart>
+                        <DVC:Chart  x:Name="areaChart" Title="Area Series Demo" VerticalAlignment="Top" Margin="10,412,407,0" Height="302">
+                            <DVC:Chart.LegendStyle>
+                                <Style TargetType="{x:Type DV:Legend}">
+                                    <Setter Property="Width" Value="0" />
+                                </Style>
+                            </DVC:Chart.LegendStyle>
+                            <DVC:AreaSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True"/>
+                        </DVC:Chart>
+                        <DVC:Chart  x:Name="barChart" Title="Bar Series Demo" VerticalAlignment="Top" Margin="398,412,10,0" Height="302">
+                            <DVC:Chart.LegendStyle>
+                                <Style TargetType="{x:Type DV:Legend}">
+                                    <Setter Property="Width" Value="0" />
+                                </Style>
+                            </DVC:Chart.LegendStyle>
+                            <DVC:BarSeries  DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True"/>
+                        </DVC:Chart>
+                        <DVC:Chart  x:Name="lineChart" Title="Line Series Demo" VerticalAlignment="Top" Margin="10,755,407,0" Height="254">
+                            <DVC:Chart.LegendStyle>
+                                <Style TargetType="{x:Type DV:Legend}">
+                                    <Setter Property="Width" Value="0" />
+                                </Style>
+                            </DVC:Chart.LegendStyle>
+                            <DVC:LineSeries  DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True"/>
+                        </DVC:Chart>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
             <TabItem Style="{StaticResource TabItemStyle}" Header="Tab3" Content="tab3"/>
         </TabControl>
     </Grid>
